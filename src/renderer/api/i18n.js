@@ -15,7 +15,7 @@ let metadata
 
 const getExtensionMetadata = (extensionId) => {
   if (!metadata) {
-    metadata = ipcRenderer.sendSync(path.I18N_MANIFEST, extensionId)
+    metadata = ipcRenderer.sendSync(constants.I18N_MANIFEST, extensionId)
   }
   return metadata
 }
