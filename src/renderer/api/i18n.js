@@ -25,7 +25,9 @@ const getMessagesPath = (extensionId, language) => {
   const defaultLocale = metadata.default_locale || 'en'
   const localesDirectory = path.join(metadata.srcDirectory, '_locales')
   let messagesPath = path.join(localesDirectory, language, 'messages.json')
-  if (!fs.statSyncNoException(messagesPath)) {
+  try {
+    fs.statSync(messagesPath)
+  } catch (err) {
     messagesPath = path.join(localesDirectory, defaultLocale, 'messages.json')
   }
   return messagesPath
